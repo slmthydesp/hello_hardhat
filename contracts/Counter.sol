@@ -11,6 +11,16 @@ contract Counter {
     emit Increment(1);
   }
 
+  function inc2() public {
+    x += 2;
+    emit Increment(2);
+  }
+
+  function inc4() public {
+    x += 4;
+    emit Increment(4);
+  }
+
   function incBy(uint by) public {
     require(by > 0, "incBy: increment should be positive");
     x += by;

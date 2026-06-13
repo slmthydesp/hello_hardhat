@@ -6,10 +6,11 @@ envEnc.config();
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
 const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
 
-if (!SEPOLIA_RPC_URL || !SEPOLIA_PRIVATE_KEY) {
+if (!SEPOLIA_RPC_URL || !SEPOLIA_PRIVATE_KEY || !ETHERSCAN_API_KEY) {
   throw new Error(
-    "缺失环境变量！请执行 npx env-enc set 配置 SEPOLIA_RPC_URL、SEPOLIA_PRIVATE_KEY"
+    "缺失环境变量！请执行 npx env-enc set 配置 SEPOLIA_RPC_URL、SEPOLIA_PRIVATE_KEY 和 ETHERSCAN_API_KEY"
   );
 }
 
@@ -45,6 +46,11 @@ export default defineConfig({
       chainType: "l1",
       url: SEPOLIA_RPC_URL!,
       accounts: [SEPOLIA_PRIVATE_KEY!],
+    },
+  },
+  verify: {
+    etherscan: {
+      apiKey: ETHERSCAN_API_KEY,
     },
   },
 });
